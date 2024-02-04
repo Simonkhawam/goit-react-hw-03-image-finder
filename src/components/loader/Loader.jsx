@@ -1,24 +1,25 @@
-import React, { Component } from "react";
-import { Circles } from 'react-loader-spinner';
-import styles from "./Loader.module.css";
+import React, { Component } from 'react';
+import styles from './Loader.module.css';
+import { ThreeDots } from 'react-loader-spinner';
 
-class Loader extends Component {
-    render() {
-        return (
-            <div className={styles.LoaderContainer}>
-                <Circles
-                    height="80"
-                    width="80"
-                    color="#4fa94d"
-                    ariaLabel="circles-loading"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                />
-            </div>
-            
-        );
-    }
+class LoaderComponent extends Component {
+  render() {
+    const { height, width, color, isVisible } = this.props;
+
+    return (
+      <div className={styles.LoaderContainer}>
+        {isVisible && (
+          <ThreeDots
+            height={height || '80'}
+            width={width || '80'}
+            color={color || '#4fa94d'}
+            ariaLabel="loading-indicator"
+            visible={true}
+          />
+        )}
+      </div>
+    );
+  }
 }
 
-export default Loader;
+export default LoaderComponent;
